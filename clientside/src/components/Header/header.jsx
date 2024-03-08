@@ -1,6 +1,4 @@
 import React from 'react';
-/*import logo from "../../assets/logo.png";*/
-
 const Header = () => {
   return (
     <div>
@@ -18,7 +16,7 @@ const Header = () => {
         {/*===============Search ================*/}
         <div>
         <input
-          className="h-full  text-base  flex-grow outline-none border-none px-8 py-2 "
+          className="h-full  text-base  flex-grow outline-none border-none px-6 "
           type="text"
         />
         </div>
