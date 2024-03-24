@@ -2,11 +2,11 @@
   "name": "cse470-project-farmer.od",
   "version": "1.0.0",
   "description": "",
-  "main": "n_backend/server.js",
+  "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon n_backend/server.js",
-    "start": "node n_backend/server.js"
+    "dev": "nodemon backend/server.js",
+    "start": "node backend/server.js"
   },
   "keywords": [
     "wahid"
