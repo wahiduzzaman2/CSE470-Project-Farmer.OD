@@ -34,7 +34,11 @@ const Header = () => {
                             : role == 'Farmer' ? '/dashboard/myProduct'
                             : '/dashboard/myCart'
                         }>Dashboard</Link></li>}
-                </ul>
+
+                    {!user &&
+                    <li><Link to="/becameSeller" className="text-yellow-500 underline decoration-underline">Became A Seller</Link></li>
+                    }
+                    </ul>
                 </div>
                 <Link to="/" className="normal-case text-xl">
                     <span className="text-red-500 font-extrabold">Food</span>
@@ -50,9 +54,13 @@ const Header = () => {
                     {user &&
                     <li><Link to={
                         role == 'Admin' ? '/dashboard/allUser'
-                        : role == 'Farmer' ? '/dashboard/myProduct'
-                        : '/dashboard/myCart'
+                        : role == 'Farmer' ? `/dashboard/myProduct/${user?.email}`
+                        : `/dashboard/myCart/${user?.email}`
                     }>Dashboard</Link></li>}
+
+                   {!user &&
+                    <li><Link to="/becomeSeller" className="text-yellow-500 underline decoration-underline">Become A Seller</Link></li>
+                   }
                 </ul>
             </div>
             <div className="navbar-end">
@@ -63,7 +71,7 @@ const Header = () => {
                         style={{ width: '25px', height: '25px', borderRadius: '50%' }}
                         className="img-fluid d-block group-hover:opacity-80 transition-opacity me-3"
                         src={user?.photoURL}
-                        alt=""
+                        alt={user?.photoURL}
                         />
               </div>
                 }

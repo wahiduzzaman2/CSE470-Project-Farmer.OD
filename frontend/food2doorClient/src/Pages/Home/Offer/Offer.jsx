@@ -4,7 +4,7 @@ const GetStarted = () => {
   return (
     <div className="bg-cover bg-center w-full " style={{ backgroundImage: `url(${bg})` }}>
       <div className="flex flex-col h-full justify-center items-center py-12 md:py-32 bg-orange-300 bg-opacity-75">
-        <h1 className="text-3xl md:text-5xl text-center font-bold mb-4">15% Discount<br />On All Courses</h1>
+        <h1 className="text-3xl md:text-5xl text-center font-bold mb-4">15% Discount<br />On All Products</h1>
         
         <h1 className="md:text-3xl mb-4">Offer Expires on</h1>
 

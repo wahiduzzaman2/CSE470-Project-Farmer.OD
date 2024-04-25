@@ -6,32 +6,28 @@ import { useForm } from "react-hook-form";
 const AddProduct = () => {
   const { reset,  } = useForm();
     const {user} = useContext(AuthContext)
-    const handleAddCourse = event =>{
+    const handleAddProduct = event =>{
         event.preventDefault();
         const form = event.target;
-        const image = form.image.value;
-        const name = form.name.value;
-        const instructor_name = user.displayName;
-        const instructor_email = user.email;
-        const instructor_photo = user.photoURL;
-        const available_seats = form.available_seats.value;
-        const price = form.price.value;
-        const description = form.description.value;
-        const what_you_will_learn = form.what_you_will_learn.value;
-        const selectedByStudent = [];
-        const enrolledByStudent = [];
-        const isPending = true;
-        const isDenied = false;
-        const admin_feedback = "";
-        const NewCourse = {image, name, instructor_name, instructor_email, instructor_photo, available_seats, price, description, what_you_will_learn, selectedByStudent, enrolledByStudent, isPending, isDenied, admin_feedback} 
+        const Image = form.Image.value;
+        const Name = form.Name.value;
+        const FarmerName = user.displayName;
+        const FarmerEmail = user.email;
+        const FarmerPhoto = user.photoURL;
+        const Category = user.Category;
+        const QuantityAvailable = form.QuantityAvailable.value;
+        const Price = form.Price.value;
+        const Description = form.Description.value;
+
+        const NewProduct = {FarmerName, FarmerEmail, FarmerPhoto, Image, Name, Category, QuantityAvailable, Price, Description} 
         
-        //console.log(NewCourse);
-        fetch('https://fluent-link-server.vercel.app/courses',{
+        //console.log(NewProduct);
+        fetch('http://localhost:5000/foods',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(NewCourse)
+            body: JSON.stringify(NewProduct)
         })
         .then(res => res.json())
         .then(data => {console.log(data);
@@ -39,7 +35,7 @@ const AddProduct = () => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Course added successfully.',
+                    title: 'Product added successfully.',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -55,14 +51,14 @@ const AddProduct = () => {
        <div className="flex justify-center items-center h-screen">
       <div className="p-8 rounded shadow-lg w-[50%]">
         <h1 className="text-3xl font-semibold mb-4">Add Product</h1>
-        <form onSubmit={handleAddCourse}>
+        <form onSubmit={handleAddProduct}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
               Product Name
             </label>
             <input
               type="text"
-              name="name"
+              name="Name"
               className="mt-1 block w-full rounded-md input-warning"
               
             />
@@ -73,7 +69,7 @@ const AddProduct = () => {
             </label>
             <input
               type="text"
-              name="category"
+              name="Category"
               className="mt-1 block w-full rounded-md input-warning"
               
             />
@@ -83,7 +79,7 @@ const AddProduct = () => {
               Description
             </label>
             <textarea
-              name="description"
+              name="Description"
               className="mt-1 block w-full rounded-md input-warning"
               
             />
@@ -94,7 +90,7 @@ const AddProduct = () => {
             </label>
             <input
               type="number"
-              name="price"
+              name="Price"
               className="mt-1 block w-full rounded-md input-warning"
               
             />
@@ -105,7 +101,7 @@ const AddProduct = () => {
             </label>
             <input
               type="number"
-              name="quantityAvailable"
+              name="QuantityAvailable"
               className="mt-1 block w-full rounded-md input-warning"
               
             />
@@ -116,7 +112,7 @@ const AddProduct = () => {
             </label>
             <input
               type="text"
-              name="image"
+              name="Image"
               className="mt-1 block w-full input-warning"
               
             />

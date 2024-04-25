@@ -23,30 +23,45 @@ const Login = () => {
     const handleLogin = (event) => {
         event.preventDefault();
         const form = event.target;
-
+    
         const email = form.email.value;
         const password = form.password.value;
-
+    
         signIn(email, password)
             .then((result) => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                localStorage.setItem('Role', 'User');
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Login successful.",
-                    showConfirmButton: false,
-                    timer: 1500,
+    
+                fetch(`http://localhost:5000/users/${loggedUser.email}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem('Role', data.role); 
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Login successful.",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    navigate(from, { replace: true });
+                    setError("");
+                })
+                .catch((error) => {
+                    console.log(error);
+                    setError("Invalid email or password");
                 });
-                navigate(from, { replace: true });
-                setError("");
             })
             .catch((error) => {
                 console.log(error);
                 setError("Invalid email or password");
             });
     };
+    
 
     // const handleGoogleSignIn = () => {
     //     googleSignIn()
@@ -125,6 +140,8 @@ const Login = () => {
                             <Link to="/register" className="link link-hover underline text-red-500">
                                 Register
                             </Link>
+                            &nbsp;or&nbsp; 
+                            <Link to="/becomeSeller" className="text-yellow-500 underline decoration-underline">Become A Seller</Link>
                         </p>
                         {/* <span>or</span>
                         <br />
@@ -135,11 +152,11 @@ const Login = () => {
                         </div> */}
                     </div>
                 </form>
-                <p className="text-right pb-5 pe-5">
+                {/* <p className="text-right pb-5 pe-5">
                     <Link to="/farmer-login"  className="text-red-500 underline decoration-underline">Farmer Login</Link>
                     &nbsp; &nbsp; &nbsp; 
                     <Link to="/admin-login"  className="text-yellow-500 underline decoration-underline">Admin Login</Link>
-                </p>
+                </p> */}
 
             </div>
         </div>

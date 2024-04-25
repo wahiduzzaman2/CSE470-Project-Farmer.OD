@@ -34,18 +34,22 @@ const Dashboard = () => {
                         </> : role == 'Farmer'? <>
                         <li><NavLink to="/"><FaHome></FaHome>Home</NavLink></li>
                         <li><NavLink to="/dashboard/addProduct"><FaCirclePlus></FaCirclePlus>Add Product</NavLink></li>
-                        <li><NavLink to="/dashboard/myProduct"><FaClipboardList></FaClipboardList>My Products</NavLink></li>
-                        {/* <li><NavLink to="/dashboard/approvedCourses"><FaClipboardCheck></FaClipboardCheck>Approved Courses</NavLink></li> */}
+                        <li><NavLink to={`/dashboard/myProduct/${user?.email}`}><FaClipboardList></FaClipboardList>My Products</NavLink></li>
+                        
                         </>:<>
                             <li><NavLink to="/"><FaHome></FaHome>Home</NavLink></li>
-                            <li><NavLink to="/dashboard/myCart"><FaClipboardList></FaClipboardList>My Cart</NavLink></li>
-                            {/* <li><NavLink to="/dashboard/enrolledCourses"><FaClipboardCheck></FaClipboardCheck>Enrolled Courses</NavLink></li> */}
-                            <li><NavLink to="/dashboard/purchaseHistory"><FaWallet></FaWallet>Purchase History</NavLink></li>
+                            <li><NavLink to={`/dashboard/myCart/${user?.email}`}><FaClipboardList></FaClipboardList>My Cart</NavLink></li>
+                            
+                            <li><NavLink to={`/dashboard/purchaseHistory/${user?.email}`}><FaWallet></FaWallet>Purchase History</NavLink></li>
                         </>
                     } 
                 </ul>
                 </div>
-                <Link to="/" className="normal-case text-xl"><span className="text-red-500 font-extrabold">Fluent</span><span className="text-yellow-400 font-extrabold">Link</span></Link>
+                <Link to="/" className="normal-case text-xl">
+                    <span className="text-red-500 font-extrabold">Food</span>
+                    <span className="text-blue-500 font-extrabold">2</span>
+                    <span className="text-yellow-400 font-extrabold">Door</span>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -58,13 +62,13 @@ const Dashboard = () => {
                         </> : role == 'Farmer'? <>
                         <li><NavLink to="/"><FaHome></FaHome>Home</NavLink></li>
                         <li><NavLink to="/dashboard/addProduct"><FaCirclePlus></FaCirclePlus>Add Product</NavLink></li>
-                        <li><NavLink to="/dashboard/myProduct"><FaClipboardList></FaClipboardList>My Products</NavLink></li>
-                        {/* <li><NavLink to="/dashboard/approvedCourses"><FaClipboardCheck></FaClipboardCheck>Approved Courses</NavLink></li> */}
+                        <li><NavLink to={`/dashboard/myProduct/${user?.email}`}><FaClipboardList></FaClipboardList>My Products</NavLink></li>
+            
                         </>:<>
                             <li><NavLink to="/"><FaHome></FaHome>Home</NavLink></li>
-                            <li><NavLink to="/dashboard/myCart"><FaClipboardList></FaClipboardList>My Cart</NavLink></li>
-                            {/* <li><NavLink to="/dashboard/enrolledCourses"><FaClipboardCheck></FaClipboardCheck>Enrolled Courses</NavLink></li> */}
-                            <li><NavLink to="/dashboard/purchaseHistory"><FaWallet></FaWallet>Purchase History</NavLink></li>
+                            <li><NavLink to={`/dashboard/myCart/${user?.email}`}><FaClipboardList></FaClipboardList>My Cart</NavLink></li>
+                           
+                            <li><NavLink to={`/dashboard/purchaseHistory/${user?.email}`}><FaWallet></FaWallet>Purchase History</NavLink></li>
                         </>
                     } 
                 </ul>
@@ -95,40 +99,6 @@ const Dashboard = () => {
             <Outlet></Outlet>
         </div>
         </>
-        // <div className="drawer drawer-mobile lg:drawer-open xl:max-w-[80%] mx-auto ">
-        //     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        //     <div className="drawer-content mt-2 text-center">
-        //         <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open DashBoard</label>
-        //         <Outlet></Outlet>
-
-        //     </div>
-        //     <div className="drawer-side bg-[transparent] max-w-[55%]">
-        //         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        //         <ul className="menu py-12 w-80">
-
-        //             {
-        //                 role == 'Admin' ? <>
-        //                     <li><NavLink to="/"><FaHome></FaHome>Home</NavLink></li>
-        //                     <li><NavLink to="/dashboard/allPendingCourse"><FaClipboardList></FaClipboardList>Pending course</NavLink></li>
-        //                     <li><NavLink to="/dashboard/allUsers"><FaUsers></FaUsers> All Users</NavLink></li>
-                            
-        //                 </> : role == 'Farmer'? <>
-        //                 <li><NavLink to="/"><FaHome></FaHome>Home</NavLink></li>
-        //                 <li><NavLink to="/dashboard/addProduct"><FaCirclePlus></FaCirclePlus>Add Product</NavLink></li>
-        //                 <li><NavLink to="/dashboard/pendingCourse"><FaClipboardList></FaClipboardList>Pending Courses</NavLink></li>
-        //                 <li><NavLink to="/dashboard/approvedCourses"><FaClipboardCheck></FaClipboardCheck>Approved Courses</NavLink></li>
-        //                 </>:<>
-        //                     <li><NavLink to="/"><FaHome></FaHome>Home</NavLink></li>
-        //                     <li><NavLink to="/dashboard/selectedCourses"><FaClipboardList></FaClipboardList>Selected Courses</NavLink></li>
-        //                     <li><NavLink to="/dashboard/enrolledCourses"><FaClipboardCheck></FaClipboardCheck>Enrolled Courses</NavLink></li>
-        //                     <li><NavLink to="/dashboard/paymentHistory"><FaWallet></FaWallet>Payment History</NavLink></li>
-        //                 </>
-        //             }
-
-        //         </ul>
-
-        //     </div>
-        // </div>
     );
 };
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import bg1 from "../../../assets/images/bg1.jpeg";
-import bg2 from "../../../assets/images/bg2.jpeg";
-import bg3 from "../../../assets/images/bg3.jpeg";
+import bg1 from "../../../assets/images/bg1.jpg";
+import bg2 from "../../../assets/images/bg2.jpg";
+import bg3 from "../../../assets/images/bg3.jpg";
 import { Link } from 'react-router-dom';
 
 const Slides = () => {

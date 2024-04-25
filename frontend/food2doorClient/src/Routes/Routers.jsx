@@ -17,6 +17,7 @@ import AddProduct from "../Pages/Dashboad/Farmer/AddProduct";
 import MyProduct from "../Pages/Dashboad/Farmer/MyProduct";
 import MyCart from "../Pages/Dashboad/User/MyCart";
 import PurchaseHistory from "../Pages/Dashboad/User/PurchaseHistory";
+import FarmerRegister from "../Pages/Auth/Register/FarmerRegister";
 
   export const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ import PurchaseHistory from "../Pages/Dashboad/User/PurchaseHistory";
             path: 'register',
             element: <Register></Register>,
           },
+        {
+            path: 'becomeSeller',
+            element: <FarmerRegister></FarmerRegister>,
+          },
       ]
     },
     {
@@ -57,32 +62,32 @@ import PurchaseHistory from "../Pages/Dashboad/User/PurchaseHistory";
         {
           path: "allUser",
           element:  <PrivateRoute><AllUser></AllUser></PrivateRoute>,
+          loader: () =>  fetch("http://localhost:5000/users"),
         },
         {
           path: 'orderHistory',
           element: <PrivateRoute><OrderHistory></OrderHistory></PrivateRoute>,
+          loader: () =>  fetch("http://localhost:5000/orderHistory"),
         },
         {
           path: 'addProduct',
           element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
         },
         {
-          path: 'myProduct',
+          path: 'myProduct/:email',
           element: <PrivateRoute><MyProduct></MyProduct></PrivateRoute>,
+          loader: ({params}) =>  fetch(`http://localhost:5000/foods/my-foods/${params.email}`),
         },
         {
-          path: 'myCart',
+          path: 'myCart/:email',
           element: <PrivateRoute><MyCart></MyCart></PrivateRoute>,
+          loader: ({params}) =>  fetch(`http://localhost:5000/MyCart/${params.email}`),
         },
         {
-          path: 'purchaseHistory',
+          path: 'purchaseHistory/:email',
           element: <PrivateRoute><PurchaseHistory></PurchaseHistory></PrivateRoute>,
+          loader: ({params}) =>  fetch(`http://localhost:5000/MyPurchaseHistory/${params.email}`),
         },
-        // {
-        //   path: 'payment/:courseId',
-        //   element: <Payment></Payment>,
-        //   loader: ({params}) =>  fetch(`https://fluent-link-server.vercel.app/courses/${params.courseId}`),
-        // },
       ]
     },
     {

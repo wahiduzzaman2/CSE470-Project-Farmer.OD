@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2'
 
-const Register = () => {
+const FarmerRegister = () => {
    
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -25,7 +25,7 @@ const Register = () => {
                 
                 updateUser(data.name, data.photo)
                     .then( () => {
-                        const saveUser = { name: data.name, email: data.email, role: "User" }
+                        const saveUser = { name: data.name, email: data.email, role: "Farmer" }
                         fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {
@@ -36,12 +36,12 @@ const Register = () => {
                         .then(res => res.json())
                         .then(data => {
                             if (data.insertedId) {
-                                localStorage.setItem('Role', 'User');
+                                localStorage.setItem('Role', 'Farmer');
                                 reset();
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'User created successfully.',
+                                    title: 'Seller account created successfully.',
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
@@ -63,7 +63,7 @@ const Register = () => {
     return (
         <div className=" hero bg-base-200 py-24">
             <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
-                <h1 className="text-4xl text-center pt-5 font-bold">Register now</h1>                
+                <h1 className="text-4xl text-center pt-5 font-bold">Become A Seller now</h1>                
                 <form onSubmit={handleSubmit(handleRegister)} className="card-body">
                 
                     
@@ -123,4 +123,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default FarmerRegister;
